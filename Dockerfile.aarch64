@@ -22,7 +22,7 @@ RUN \
   pip install -U --no-cache-dir \
     pip \
     wheel && \
-  pip3 install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
+  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
     "wyoming-piper==${PIPER_VERSION}" && \
   if [ -z ${PIPER_BIN_VERSION+x} ]; then \
     PIPER_BIN_VERSION=$(curl -sL "https://api.github.com/repos/rhasspy/piper/releases/latest" \

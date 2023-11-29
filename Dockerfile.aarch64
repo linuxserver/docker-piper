@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-jammy
 
 # set version label
 ARG BUILD_DATE
@@ -22,7 +22,7 @@ RUN \
   pip install -U --no-cache-dir \
     pip \
     wheel && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
+  pip3 install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
     "wyoming-piper==${PIPER_VERSION}" && \
   if [ -z ${PIPER_BIN_VERSION+x} ]; then \
     PIPER_BIN_VERSION=$(curl -sL "https://api.github.com/repos/rhasspy/piper/releases/latest" \
@@ -30,7 +30,7 @@ RUN \
   fi && \
   curl -sL -o  \
     /tmp/piper.tar.gz -L \
-    "https://github.com/rhasspy/piper/releases/download/${PIPER_BIN_VERSION}/piper_linux_x86_64.tar.gz" && \
+    "https://github.com/rhasspy/piper/releases/download/${PIPER_BIN_VERSION}/piper_linux_aarch64.tar.gz" && \
   tar xzf \
     /tmp/piper.tar.gz -C \
     /usr/share && \

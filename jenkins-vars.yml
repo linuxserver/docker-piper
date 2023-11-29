@@ -16,7 +16,7 @@ repo_vars:
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/piper'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/piper'
   - DIST_IMAGE = 'ubuntu'
-  - MULTIARCH='false'
+  - MULTIARCH='true'
   - CI='true'
   - CI_WEB='false'
   - CI_DELAY='120'

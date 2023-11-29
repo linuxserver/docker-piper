@@ -41,7 +41,7 @@ Find us at:
 
 [Piper](https://github.com/rhasspy/piper/) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. Piper is used in a variety of projects.
 
-[![piper](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-banner.png)](https://github.com/rhasspy/piper/)
+[![piper](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png)](https://github.com/rhasspy/piper/)
 
 ## Supported Architectures
 
@@ -54,7 +54,7 @@ The architectures supported by this image are:
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ❌ | |
+| arm64 | ✅ | arm64v8-\<version tag\> |
 | armhf | ❌ | |
 
 ## Application Setup

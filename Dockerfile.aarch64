@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1
+
+FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-jammy
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+ARG PIPER_VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="thespad"
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    python3-venv && \
+  if [ -z ${PIPER_VERSION+x} ]; then \
+    PIPER_VERSION=$(curl -sL  https://pypi.python.org/pypi/wyoming-piper/json |jq -r '. | .info.version'); \
+  fi && \
+  python3 -m venv /lsiopy && \
+  pip install -U --no-cache-dir \
+    pip \
+    wheel && \
+  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
+    "wyoming-piper==${PIPER_VERSION}" && \
+  if [ -z ${PIPER_BIN_VERSION+x} ]; then \
+    PIPER_BIN_VERSION=$(curl -sL "https://api.github.com/repos/rhasspy/piper/releases/latest" \
+    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+  fi && \
+  curl -sL -o  \
+    /tmp/piper.tar.gz -L \
+    "https://github.com/rhasspy/piper/releases/download/${PIPER_BIN_VERSION}/piper_linux_aarch64.tar.gz" && \
+  tar xzf \
+    /tmp/piper.tar.gz -C \
+    /usr/share && \
+  rm -rf \
+    /var/lib/apt/lists/* \
+    /tmp/*
+
+COPY root /
+
+VOLUME /config
+
+EXPOSE 10200

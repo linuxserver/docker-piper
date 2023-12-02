@@ -59,7 +59,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-For use with Home Assistant, add the Wyoming integration and support the hostname/IP and port that piper is running add-on."
+For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/), add the Wyoming integration and supply the hostname/IP and port that piper is running add-on."
 
 For more information see the [piper docs](https://github.com/rhasspy/piper/),
 

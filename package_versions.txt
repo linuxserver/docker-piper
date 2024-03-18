@@ -55,7 +55,7 @@ libcrypt1               1:4.4.27-1                               deb
 libcurl4                7.81.0-1ubuntu1.15                       deb                      
 libdb5.3                5.3.28+dfsg1-0.8ubuntu3                  deb                      
 libdebconfclient0       0.261ubuntu1                             deb                      
-libexpat1               2.4.7-1ubuntu0.2                         deb                      
+libexpat1               2.4.7-1ubuntu0.3                         deb                      
 libext2fs2              1.46.5-2ubuntu1.1                        deb                      
 libffi8                 3.4.2-4                                  deb                      
 libgcc-s1               12.1.0-2ubuntu1~22.04                    deb                      
@@ -162,7 +162,7 @@ tzdata                  2024a-0ubuntu0.22.04                     deb
 ubuntu-keyring          2021.03.26                               deb                      
 usrmerge                25ubuntu2                                deb                      
 util-linux              2.37.2-4ubuntu3                          deb                      
-wheel                   0.42.0                                   python                   
+wheel                   0.43.0                                   python                   
 wyoming                 1.1.0                                    python                   
 wyoming-piper           1.4.0                                    python                   
 zlib1g                  1:1.2.11.dfsg-2ubuntu9.2                 deb                      

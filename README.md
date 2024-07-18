@@ -63,6 +63,11 @@ For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control
 
 For more information see the [piper docs](https://github.com/rhasspy/piper/),
 
+## Read-Only Operation
+
+This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -86,7 +91,7 @@ services:
       - PIPER_SPEAKER=0 #optional
       - PIPER_PROCS=1 #optional
     volumes:
-      - /path/to/data:/config
+      - /path/to/piper/data:/config
     ports:
       - 10200:10200
     restart: unless-stopped
@@ -107,7 +112,7 @@ docker run -d \
   -e PIPER_SPEAKER=0 `#optional` \
   -e PIPER_PROCS=1 `#optional` \
   -p 10200:10200 \
-  -v /path/to/data:/config \
+  -v /path/to/piper/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/piper:latest
 ```
@@ -129,6 +134,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PIPER_SPEAKER=0` | Speaker number to use if the voice supports multiple speakers. |
 | `-e PIPER_PROCS=1` | Number of Piper processes to run simultaneously. |
 | `-v /config` | Local path for piper config files. |
+| `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
 ## Environment variables from files (Docker secrets)
 
@@ -291,4 +297,5 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **18.07.24:** - Rebase to Ubuntu Noble.
 * **25.11.23:** - Initial Release.

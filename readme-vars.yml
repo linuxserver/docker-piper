@@ -6,15 +6,11 @@ project_url: "https://github.com/rhasspy/piper/"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for Piper."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
-project_blurb_optional_extras_enabled: false
 
 # supported architectures
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-
-# development version
-development_versions: false
 
 # container parameters
 common_param_env_vars_enabled: true
@@ -24,7 +20,7 @@ param_env_vars:
   - { env_var: "PIPER_VOICE", env_value: "en_US-lessac-medium", desc: "The [Piper voice](https://huggingface.co/rhasspy/piper-voices/tree/main) to use, in the format `<language>-<name>-<quality>`" }
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "/path/to/data", desc: "Local path for piper config files." }
+  - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/data", desc: "Local path for piper config files." }
 param_usage_include_ports: true
 param_ports:
   - { external_port: "10200", internal_port: "10200", port_desc: "Wyoming connection port." }
@@ -38,6 +34,8 @@ opt_param_env_vars:
   - { env_var: "PIPER_SPEAKER", env_value: "0", desc: "Speaker number to use if the voice supports multiple speakers." }
   - { env_var: "PIPER_PROCS", env_value: "1", desc: "Number of Piper processes to run simultaneously." }
 
+readonly_supported: true
+
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -47,4 +45,5 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "18.07.24:", desc: "Rebase to Ubuntu Noble." }
   - { date: "25.11.23:", desc: "Initial Release." }

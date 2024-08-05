@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
+FROM ghcr.io/linuxserver/baseimage-ubuntu:noble
 
 # set version label
 ARG BUILD_DATE
@@ -8,6 +8,9 @@ ARG VERSION
 ARG PIPER_VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thespad"
+
+ENV DEBIAN_FRONTEND="noninteractive" \
+  TMPDIR="/run/piper-temp"
 
 RUN \
   apt-get update && \
@@ -32,6 +35,8 @@ RUN \
   tar xzf \
     /tmp/piper.tar.gz -C \
     /usr/share && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
+  echo "**** cleanup ****" && \
   rm -rf \
     /var/lib/apt/lists/* \
     /tmp/*

@@ -30,8 +30,8 @@ pipeline {
     CI='true'
     CI_WEB='false'
     CI_DELAY='120'
-    CI_DOCKERENV='TZ=Europe/London|PIPER_VOICE=en_US-lessac-medium'
-    CI_AUTH='user:password'
+    CI_DOCKERENV='PIPER_VOICE=en_US-lessac-medium'
+    CI_AUTH=''
     CI_WEBPATH=''
   }
   stages {

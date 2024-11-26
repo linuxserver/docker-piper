@@ -28,7 +28,7 @@ pipeline {
     DEV_DOCKERHUB_IMAGE = 'lsiodev/piper'
     PR_DOCKERHUB_IMAGE = 'lspipepr/piper'
     DIST_IMAGE = 'ubuntu'
-    MULTIARCH='true'
+    MULTIARCH='false'
     CI='false'
     CI_WEB='false'
     CI_DELAY='120'

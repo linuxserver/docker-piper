@@ -4,31 +4,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  external-trigger-main:
+  external-trigger-gpu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
 
       - name: External Trigger
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/gpu'
         env:
           SKIP_EXTERNAL_TRIGGER: ${{ vars.SKIP_EXTERNAL_TRIGGER }}
         run: |
           printf "# External trigger for docker-piper\n\n" >> $GITHUB_STEP_SUMMARY
-          if grep -q "^piper_main" <<< "${SKIP_EXTERNAL_TRIGGER}"; then
+          if grep -q "^piper_gpu" <<< "${SKIP_EXTERNAL_TRIGGER}"; then
             echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
-            echo "> Github organizational variable \`SKIP_EXTERNAL_TRIGGER\` contains \`piper_main\`; skipping trigger." >> $GITHUB_STEP_SUMMARY
+            echo "> Github organizational variable \`SKIP_EXTERNAL_TRIGGER\` contains \`piper_gpu\`; skipping trigger." >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
           echo "> [!NOTE]" >> $GITHUB_STEP_SUMMARY
-          echo "> External trigger running off of main branch. To disable this trigger, add \`piper_main\` into the Github organizational variable \`SKIP_EXTERNAL_TRIGGER\`." >> $GITHUB_STEP_SUMMARY
+          echo "> External trigger running off of gpu branch. To disable this trigger, add \`piper_gpu\` into the Github organizational variable \`SKIP_EXTERNAL_TRIGGER\`." >> $GITHUB_STEP_SUMMARY
           printf "\n## Retrieving external version\n\n" >> $GITHUB_STEP_SUMMARY
           EXT_RELEASE=$(curl -sL "https://pypi.python.org/pypi/wyoming-piper/json" |jq -r '. | .info.version')
           echo "Type is \`pip_version\`" >> $GITHUB_STEP_SUMMARY
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
             echo "> Can't retrieve external version, exiting" >> $GITHUB_STEP_SUMMARY
-            FAILURE_REASON="Can't retrieve external version for piper branch main"
+            FAILURE_REASON="Can't retrieve external version for piper branch gpu"
             GHA_TRIGGER_URL="https://github.com/linuxserver/docker-piper/actions/runs/${{ github.run_id }}"
             curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 16711680,
               "description": "**Trigger Failed** \n**Reason:** '"${FAILURE_REASON}"' \n**Trigger URL:** '"${GHA_TRIGGER_URL}"' \n"}],
@@ -39,7 +39,7 @@ jobs:
           echo "External version: \`${EXT_RELEASE}\`" >> $GITHUB_STEP_SUMMARY
           echo "Retrieving last pushed version" >> $GITHUB_STEP_SUMMARY
           image="linuxserver/piper"
-          tag="latest"
+          tag="gpu"
           token=$(curl -sX GET \
             "https://ghcr.io/token?scope=repository%3Alinuxserver%2Fpiper%3Apull" \
             | jq -r '.token')
@@ -66,7 +66,7 @@ jobs:
           if [ -z "${IMAGE_VERSION}" ]; then
             echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
             echo "Can't retrieve last pushed version, exiting" >> $GITHUB_STEP_SUMMARY
-            FAILURE_REASON="Can't retrieve last pushed version for piper tag latest"
+            FAILURE_REASON="Can't retrieve last pushed version for piper tag gpu"
             curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 16711680,
               "description": "**Trigger Failed** \n**Reason:** '"${FAILURE_REASON}"' \n"}],
               "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}
@@ -76,14 +76,14 @@ jobs:
           if [ "${EXT_RELEASE}" == "${IMAGE_VERSION}" ]; then
             echo "Version \`${EXT_RELEASE}\` already pushed, exiting" >> $GITHUB_STEP_SUMMARY
             exit 0
-          elif [ $(curl -s https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piper/job/main/lastBuild/api/json | jq -r '.building') == "true" ]; then
+          elif [ $(curl -s https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piper/job/gpu/lastBuild/api/json | jq -r '.building') == "true" ]; then
             echo "New version \`${EXT_RELEASE}\` found; but there already seems to be an active build on Jenkins; exiting" >> $GITHUB_STEP_SUMMARY
             exit 0
           else
             if [[ "${artifacts_found}" == "false" ]]; then
               echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
               echo "> New version detected, but not all artifacts are published yet; skipping trigger" >> $GITHUB_STEP_SUMMARY
-              FAILURE_REASON="New version ${EXT_RELEASE} for piper tag latest is detected, however not all artifacts are uploaded to upstream release yet. Will try again later."
+              FAILURE_REASON="New version ${EXT_RELEASE} for piper tag gpu is detected, however not all artifacts are uploaded to upstream release yet. Will try again later."
               curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 9802903,
                 "description": "**Trigger Failed** \n**Reason:** '"${FAILURE_REASON}"' \n"}],
                 "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}
@@ -94,7 +94,7 @@ jobs:
                 echo "All artifacts seem to be uploaded." >> $GITHUB_STEP_SUMMARY
               fi
               response=$(curl -iX POST \
-                https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piper/job/main/buildWithParameters?PACKAGE_CHECK=false \
+                https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piper/job/gpu/buildWithParameters?PACKAGE_CHECK=false \
                 --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }} | grep -i location | sed "s|^[L|l]ocation: \(.*\)|\1|")
               echo "Jenkins [job queue url](${response%$'\r'})" >> $GITHUB_STEP_SUMMARY
               echo "Sleeping 10 seconds until job starts" >> $GITHUB_STEP_SUMMARY
@@ -109,7 +109,7 @@ jobs:
                 --data-urlencode "description=GHA external trigger https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
                 --data-urlencode "Submit=Submit"
               echo "**** Notifying Discord ****"
-              TRIGGER_REASON="A version change was detected for piper tag latest. Old version:${IMAGE_VERSION} New version:${EXT_RELEASE}"
+              TRIGGER_REASON="A version change was detected for piper tag gpu. Old version:${IMAGE_VERSION} New version:${EXT_RELEASE}"
               curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 9802903,
                 "description": "**Build Triggered** \n**Reason:** '"${TRIGGER_REASON}"' \n**Build URL:** '"${buildurl}display/redirect"' \n"}],
                 "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}

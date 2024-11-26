@@ -24,6 +24,9 @@ RUN \
     pip \
     wheel && \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
+    nvidia-cublas-cu12 \
+    "nvidia-cudnn-cu12>=9.0,<10.0" \
+    onnxruntime-gpu \
     "wyoming-piper==${PIPER_VERSION}" && \
   if [ -z ${PIPER_BIN_VERSION+x} ]; then \
     PIPER_BIN_VERSION=$(curl -sL "https://api.github.com/repos/rhasspy/piper/releases/latest" \

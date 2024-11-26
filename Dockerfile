@@ -15,6 +15,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+    patch \
     python3-venv && \
   if [ -z ${PIPER_VERSION+x} ]; then \
     PIPER_VERSION=$(curl -sL  https://pypi.python.org/pypi/wyoming-piper/json |jq -r '. | .info.version'); \

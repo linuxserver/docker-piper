@@ -30,7 +30,11 @@ RUN \
     wheel && \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
     nvidia-cublas-cu12 \
+    nvidia-cuda-nvrtc-cu12 \
+    nvidia-cuda-runtime-cu12 \
     "nvidia-cudnn-cu12>=9.0,<10.0" \
+    nvidia-cufft-cu12 \
+    nvidia-curand-cu12 \
     onnxruntime-gpu \
     "wyoming-piper==${PIPER_VERSION}" && \
   if [ -z ${PIPER_BIN_VERSION+x} ]; then \

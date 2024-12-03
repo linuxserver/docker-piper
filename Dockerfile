@@ -12,7 +12,7 @@ LABEL maintainer="thespad"
 ENV DEBIAN_FRONTEND="noninteractive" \
   TMPDIR="/run/piper-temp"
 
-RUN \
+RUN --mount=type=bind,source=/patch,target=/patch \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     build-essential \
@@ -53,6 +53,8 @@ RUN \
   cmake --build build --config Release && \
   cmake --install build && \
   cp -dR /tmp/piper-build/install/* /usr/share/piper && \
+  patch /lsiopy/lib/python3.12/site-packages/wyoming_piper/__main__.py < /patch/__main__.patch && \
+  patch /lsiopy/lib/python3.12/site-packages/wyoming_piper/process.py < /patch/process.patch && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   apt-get purge -y \

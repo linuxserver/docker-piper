@@ -3,9 +3,6 @@
 
 mkdir -p /run/piper-temp
 
-patch /lsiopy/lib/python3.12/site-packages/wyoming_piper/process.py < /patch/process.patch
-patch /lsiopy/lib/python3.12/site-packages/wyoming_piper/__main__.py < /patch/__main__.patch
-
 # permissions
 lsiown -R abc:abc \
     /config \

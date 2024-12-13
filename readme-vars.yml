@@ -10,7 +10,11 @@ project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_
 # supported architectures
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
-  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+
+development_versions: true
+development_versions_items:
+  - { tag: "latest", desc: "Stable releases" }
+  - { tag: "gpu", desc: "Releases with Nvidia GPU support (amd64 only)" }
 
 # container parameters
 common_param_env_vars_enabled: true
@@ -41,9 +45,12 @@ app_setup_block_enabled: true
 app_setup_block: |
   For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/), add the Wyoming integration and supply the hostname/IP and port that piper is running add-on."
 
+  When using the `gpu` tag with Nvidia GPUs, make sure you set the container to use the `nvidia` runtime and that you have the [Nvidia Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host and that you run the container with the correct GPU(s) exposed. See the [Nvidia Container Toolkit docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html) for more details.
+
   For more information see the [piper docs](https://github.com/rhasspy/piper/),
 
 # changelog
 changelogs:
+  - { date: "26.11.24:", desc: "Add GPU branch." }
   - { date: "18.07.24:", desc: "Rebase to Ubuntu Noble." }
   - { date: "25.11.23:", desc: "Initial Release." }

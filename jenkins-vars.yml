@@ -3,9 +3,9 @@
 # jenkins variables
 project_name: docker-piper
 external_type: pip_version
-release_type: stable
-release_tag: latest
-ls_branch: main
+release_type: prerelease
+release_tag: gpu
+ls_branch: gpu
 repo_vars:
   - EXT_PIP = 'wyoming-piper'
   - BUILD_VERSION_ARG = 'PIPER_VERSION'
@@ -16,10 +16,10 @@ repo_vars:
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/piper'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/piper'
   - DIST_IMAGE = 'ubuntu'
-  - MULTIARCH='true'
-  - CI='true'
+  - MULTIARCH='false'
+  - CI='false'
   - CI_WEB='false'
   - CI_DELAY='120'
-  - CI_DOCKERENV='PIPER_VOICE=en_US-lessac-medium'
+  - CI_DOCKERENV=''
   - CI_AUTH=''
   - CI_WEBPATH=''

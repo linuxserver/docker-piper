@@ -6,40 +6,34 @@ project_url: "https://github.com/rhasspy/piper/"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for Piper."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
-
 # supported architectures
 available_architectures:
-  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
-
+  - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
 development_versions: true
 development_versions_items:
-  - { tag: "latest", desc: "Stable releases" }
-  - { tag: "gpu", desc: "Releases with Nvidia GPU support (amd64 only)" }
-
+  - {tag: "latest", desc: "Stable releases"}
+  - {tag: "gpu", desc: "Releases with Nvidia GPU support (amd64 only)"}
 # container parameters
 common_param_env_vars_enabled: true
 param_container_name: "{{ project_name }}"
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "PIPER_VOICE", env_value: "en_US-lessac-medium", desc: "The [Piper voice](https://huggingface.co/rhasspy/piper-voices/tree/main) to use, in the format `<language>-<name>-<quality>`" }
+  - {env_var: "PIPER_VOICE", env_value: "en_US-lessac-medium", desc: "The [Piper voice](https://huggingface.co/rhasspy/piper-voices/tree/main) to use, in the format `<language>-<name>-<quality>`"}
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/data", desc: "Local path for piper config files." }
+  - {vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/data", desc: "Local path for piper config files."}
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "10200", internal_port: "10200", port_desc: "Wyoming connection port." }
-
+  - {external_port: "10200", internal_port: "10200", port_desc: "Wyoming connection port."}
 # optional container parameters
 opt_param_usage_include_env: true
 opt_param_env_vars:
-  - { env_var: "PIPER_LENGTH", env_value: "1.0", desc: "Voice speaking rate, 1.0 is default with < 1.0 being faster and > 1.0 being slower." }
-  - { env_var: "PIPER_NOISE", env_value: "0.667", desc: "Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio." }
-  - { env_var: "PIPER_NOISEW", env_value: "0.333", desc: "Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses." }
-  - { env_var: "PIPER_SPEAKER", env_value: "0", desc: "Speaker number to use if the voice supports multiple speakers." }
-  - { env_var: "PIPER_PROCS", env_value: "1", desc: "Number of Piper processes to run simultaneously." }
-
+  - {env_var: "PIPER_LENGTH", env_value: "1.0", desc: "Voice speaking rate, 1.0 is default with < 1.0 being faster and > 1.0 being slower."}
+  - {env_var: "PIPER_NOISE", env_value: "0.667", desc: "Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio."}
+  - {env_var: "PIPER_NOISEW", env_value: "0.333", desc: "Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses."}
+  - {env_var: "PIPER_SPEAKER", env_value: "0", desc: "Speaker number to use if the voice supports multiple speakers."}
+  - {env_var: "PIPER_PROCS", env_value: "1", desc: "Number of Piper processes to run simultaneously."}
 readonly_supported: true
-
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -48,9 +42,47 @@ app_setup_block: |
   When using the `gpu` tag with Nvidia GPUs, make sure you set the container to use the `nvidia` runtime and that you have the [Nvidia Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host and that you run the container with the correct GPU(s) exposed. See the [Nvidia Container Toolkit docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html) for more details.
 
   For more information see the [piper docs](https://github.com/rhasspy/piper/),
-
+# init diagram
+init_diagram: |
+  "piper:gpu": {
+    docker-mods
+    base {
+      fix-attr +\nlegacy cont-init
+    }
+    docker-mods -> base
+    legacy-services
+    custom services
+    init-services -> legacy-services
+    init-services -> custom services
+    custom services -> legacy-services
+    legacy-services -> ci-service-check
+    init-migrations -> init-adduser
+    init-os-end -> init-config
+    init-config -> init-config-end
+    init-crontab-config -> init-config-end
+    init-piper-config -> init-config-end
+    init-config -> init-crontab-config
+    init-mods-end -> init-custom-files
+    base -> init-envfile
+    base -> init-migrations
+    init-config-end -> init-mods
+    init-mods-package-install -> init-mods-end
+    init-mods -> init-mods-package-install
+    init-adduser -> init-os-end
+    init-envfile -> init-os-end
+    init-config -> init-piper-config
+    init-custom-files -> init-services
+    init-services -> svc-cron
+    svc-cron -> legacy-services
+    init-services -> svc-piper
+    svc-piper -> legacy-services
+  }
+  Base Images: {
+    "baseimage-ubuntu:noble"
+  }
+  "piper:gpu" <- Base Images
 # changelog
 changelogs:
-  - { date: "26.11.24:", desc: "Add GPU branch." }
-  - { date: "18.07.24:", desc: "Rebase to Ubuntu Noble." }
-  - { date: "25.11.23:", desc: "Initial Release." }
+  - {date: "26.11.24:", desc: "Add GPU branch."}
+  - {date: "18.07.24:", desc: "Rebase to Ubuntu Noble."}
+  - {date: "25.11.23:", desc: "Initial Release."}

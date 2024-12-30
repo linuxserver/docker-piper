@@ -26,7 +26,7 @@ dpkg                         1.22.6ubuntu6.1                    deb
 dpkg-dev                     1.22.6ubuntu6.1                    deb                      
 e2fsprogs                    1.47.0-2.4~exp1ubuntu4.1           deb                      
 findutils                    4.9.0-5build1                      deb                      
-flatbuffers                  24.3.25                            python                   
+flatbuffers                  24.12.23                           python                   
 gcc-14-base                  14.2.0-4ubuntu2~24.04              deb                      
 gnupg                        2.4.4-2ubuntu17                    deb                      
 gnupg-l10n                   2.4.4-2ubuntu17                    deb                      

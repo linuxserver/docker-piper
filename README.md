@@ -57,15 +57,6 @@ The architectures supported by this image are:
 | arm64 | ✅ | arm64v8-\<version tag\> |
 | armhf | ❌ | |
 
-## Version Tags
-
-This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
-
-| Tag | Available | Description |
-| :----: | :----: |--- |
-| latest | ✅ | Stable releases |
-| gpu | ✅ | Releases with Nvidia GPU support (amd64 only) |
-
 ## Application Setup
 
 For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/), add the Wyoming integration and supply the hostname/IP and port that piper is running add-on."
@@ -311,6 +302,5 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
-* **26.11.24:** - Add GPU branch.
 * **18.07.24:** - Rebase to Ubuntu Noble.
 * **25.11.23:** - Initial Release.

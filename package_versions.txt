@@ -3,7 +3,7 @@ Simple Launcher              1.1.0.14                           dotnet  (+5 dupl
 adduser                      3.137ubuntu1                       deb                      
 apt                          2.7.14build2                       deb                      
 apt-utils                    2.7.14build2                       deb                      
-base-files                   13ubuntu10.1                       deb                      
+base-files                   13ubuntu10.2                       deb                      
 base-passwd                  3.6.3build1                        deb                      
 bash                         5.2.21-2ubuntu4                    deb                      
 binutils-common              2.42-4ubuntu2.3                    deb                      
@@ -26,7 +26,7 @@ dpkg                         1.22.6ubuntu6.1                    deb
 dpkg-dev                     1.22.6ubuntu6.1                    deb                      
 e2fsprogs                    1.47.0-2.4~exp1ubuntu4.1           deb                      
 findutils                    4.9.0-5build1                      deb                      
-flatbuffers                  25.1.24                            python                   
+flatbuffers                  25.2.10                            python                   
 gcc-14-base                  14.2.0-4ubuntu2~24.04              deb                      
 gnupg                        2.4.4-2ubuntu17                    deb                      
 gnupg-l10n                   2.4.4-2ubuntu17                    deb                      
@@ -44,7 +44,7 @@ humanfriendly                10.0                               python
 init-system-helpers          1.66ubuntu1                        deb                      
 jq                           1.7.1-3build1                      deb                      
 keyboxd                      2.4.4-2ubuntu17                    deb                      
-krb5-locales                 1.20.1-6ubuntu2.2                  deb                      
+krb5-locales                 1.20.1-6ubuntu2.3                  deb                      
 libacl1                      2.3.2-1build1.1                    deb                      
 libapt-pkg6.0t64             2.7.14build2                       deb                      
 libassuan0                   2.5.6-1build1                      deb                      
@@ -73,14 +73,14 @@ libgcrypt20                  1.10.3-2build1                     deb
 libgmp10                     2:6.3.0+dfsg-2ubuntu6.1            deb                      
 libgnutls30t64               3.8.3-1.1ubuntu3.2                 deb                      
 libgpg-error0                1.47-3build2.1                     deb                      
-libgssapi-krb5-2             1.20.1-6ubuntu2.2                  deb                      
+libgssapi-krb5-2             1.20.1-6ubuntu2.3                  deb                      
 libhogweed6t64               3.9.1-2.2build1.1                  deb                      
 libidn2-0                    2.3.7-2build1.1                    deb                      
 libjq1                       1.7.1-3build1                      deb                      
-libk5crypto3                 1.20.1-6ubuntu2.2                  deb                      
+libk5crypto3                 1.20.1-6ubuntu2.3                  deb                      
 libkeyutils1                 1.6.3-3build1                      deb                      
-libkrb5-3                    1.20.1-6ubuntu2.2                  deb                      
-libkrb5support0              1.20.1-6ubuntu2.2                  deb                      
+libkrb5-3                    1.20.1-6ubuntu2.3                  deb                      
+libkrb5support0              1.20.1-6ubuntu2.3                  deb                      
 libksba8                     1.6.6-1build1                      deb                      
 libldap-common               2.6.7+dfsg-1~exp1ubuntu8.1         deb                      
 libldap2                     2.6.7+dfsg-1~exp1ubuntu8.1         deb                      
@@ -139,7 +139,7 @@ ncurses-base                 6.4+20240113-1ubuntu2              deb
 ncurses-bin                  6.4+20240113-1ubuntu2              deb                      
 netbase                      6.4                                deb                      
 netcat-openbsd               1.226-1ubuntu2                     deb                      
-numpy                        2.2.2                              python                   
+numpy                        2.2.3                              python                   
 nvidia-cublas-cu12           12.8.3.14                          python                   
 nvidia-cuda-nvrtc-cu12       12.8.61                            python                   
 nvidia-cuda-runtime-cu12     12.8.57                            python                   
@@ -175,7 +175,7 @@ sympy                        1.13.3                             python
 systemd-standalone-sysusers  255.4-1ubuntu8.5                   deb                      
 sysvinit-utils               3.08-6ubuntu3                      deb                      
 tar                          1.35+dfsg-3build1                  deb                      
-tzdata                       2024b-0ubuntu0.24.04               deb                      
+tzdata                       2024b-0ubuntu0.24.04.1             deb                      
 ubuntu-keyring               2023.11.28.1                       deb                      
 unminimize                   0.2.1                              deb                      
 util-linux                   2.39.3-9ubuntu6.2                  deb                      

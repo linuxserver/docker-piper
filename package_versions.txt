@@ -138,7 +138,7 @@ ncurses-base                 6.4+20240113-1ubuntu2              deb
 ncurses-bin                  6.4+20240113-1ubuntu2              deb       
 netbase                      6.4                                deb       
 netcat-openbsd               1.226-1ubuntu2                     deb       
-numpy                        2.2.4                              python    
+numpy                        2.2.5                              python    
 nvidia-cublas-cu12           12.8.4.1                           python    
 nvidia-cuda-nvrtc-cu12       12.8.93                            python    
 nvidia-cuda-runtime-cu12     12.8.90                            python    
@@ -146,13 +146,13 @@ nvidia-cudnn-cu12            9.8.0.87                           python
 nvidia-cufft-cu12            11.3.3.83                          python    
 nvidia-curand-cu12           10.3.9.90                          python    
 nvidia-nvjitlink-cu12        12.8.93                            python    
-onnxruntime-gpu              1.21.0                             python    
+onnxruntime-gpu              1.21.1                             python    
 openssl                      3.0.13-0ubuntu3.5                  deb       
-packaging                    24.2                               python    
+packaging                    25.0                               python    
 passwd                       1:4.13+dfsg1-4ubuntu3.2            deb       
 patch                        2.7.6-7build3                      deb       
-perl                         5.38.2-3.2build2.1                 deb       
-perl-base                    5.38.2-3.2build2.1                 deb       
+perl                         5.38.2-3.2ubuntu0.1                deb       
+perl-base                    5.38.2-3.2ubuntu0.1                deb       
 pinentry-curses              1.2.1-3ubuntu5                     deb       
 pip                          25.0.1                             python    
 pkgconf                      1.8.1-2build1                      deb       

@@ -154,7 +154,7 @@ patch                        2.7.6-7build3                      deb
 perl                         5.38.2-3.2ubuntu0.1                deb       
 perl-base                    5.38.2-3.2ubuntu0.1                deb       
 pinentry-curses              1.2.1-3ubuntu5                     deb       
-pip                          25.0.1                             python    
+pip                          25.1                               python    
 pkgconf                      1.8.1-2build1                      deb       
 procps                       2:4.0.4-4ubuntu3.2                 deb       
 protobuf                     6.30.2                             python    
@@ -170,7 +170,7 @@ python3.12-venv              3.12.3-1ubuntu0.5                  deb
 readline-common              8.2-4build1                        deb       
 sed                          4.9-2build1                        deb       
 sensible-utils               0.0.22                             deb       
-sympy                        1.13.3                             python    
+sympy                        1.14.0                             python    
 systemd-standalone-sysusers  255.4-1ubuntu8.6                   deb       
 sysvinit-utils               3.08-6ubuntu3                      deb       
 tar                          1.35+dfsg-3build1                  deb       

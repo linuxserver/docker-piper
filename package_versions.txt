@@ -142,11 +142,11 @@ numpy                        2.2.5                              python
 nvidia-cublas-cu12           12.9.0.13                          python    
 nvidia-cuda-nvrtc-cu12       12.9.41                            python    
 nvidia-cuda-runtime-cu12     12.9.37                            python    
-nvidia-cudnn-cu12            9.9.0.52                           python    
+nvidia-cudnn-cu12            9.10.0.56                          python    
 nvidia-cufft-cu12            11.4.0.6                           python    
 nvidia-curand-cu12           10.3.10.19                         python    
 nvidia-nvjitlink-cu12        12.9.41                            python    
-onnxruntime-gpu              1.21.1                             python    
+onnxruntime-gpu              1.22.0                             python    
 openssl                      3.0.13-0ubuntu3.5                  deb       
 packaging                    25.0                               python    
 passwd                       1:4.13+dfsg1-4ubuntu3.2            deb       

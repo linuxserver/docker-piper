@@ -3,7 +3,7 @@ Simple Launcher              1.1.0.14                           binary  (+5 dupl
 adduser                      3.137ubuntu1                       deb                      
 apt                          2.8.3                              deb                      
 apt-utils                    2.8.3                              deb                      
-base-files                   13ubuntu10.2                       deb                      
+base-files                   13ubuntu10.3                       deb                      
 base-passwd                  3.6.3build1                        deb                      
 bash                         5.2.21-2ubuntu4                    deb                      
 binutils-common              2.42-4ubuntu2.5                    deb                      
@@ -143,7 +143,7 @@ numpy                        2.3.2                              python
 nvidia-cublas-cu12           12.9.1.4                           python                   
 nvidia-cuda-nvrtc-cu12       12.9.86                            python                   
 nvidia-cuda-runtime-cu12     12.9.79                            python                   
-nvidia-cudnn-cu12            9.11.0.98                          python                   
+nvidia-cudnn-cu12            9.12.0.46                          python                   
 nvidia-cufft-cu12            11.4.1.4                           python                   
 nvidia-curand-cu12           10.3.10.19                         python                   
 nvidia-nvjitlink-cu12        12.9.86                            python                   

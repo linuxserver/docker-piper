@@ -89,6 +89,7 @@ services:
       - PIPER_NOISEW=0.333 #optional
       - PIPER_SPEAKER=0 #optional
       - PIPER_PROCS=1 #optional
+      - STREAMING= #optional
     volumes:
       - /path/to/piper/data:/config
     ports:
@@ -110,6 +111,7 @@ docker run -d \
   -e PIPER_NOISEW=0.333 `#optional` \
   -e PIPER_SPEAKER=0 `#optional` \
   -e PIPER_PROCS=1 `#optional` \
+  -e STREAMING= `#optional` \
   -p 10200:10200 \
   -v /path/to/piper/data:/config \
   --restart unless-stopped \
@@ -132,6 +134,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PIPER_NOISEW=0.333` | Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses. |
 | `-e PIPER_SPEAKER=0` | Speaker number to use if the voice supports multiple speakers. |
 | `-e PIPER_PROCS=1` | Number of Piper processes to run simultaneously. |
+| `-e STREAMING=` | Setting to `true`, or any other value, will enable support for streaming audio on sentence boundaries. |
 | `-v /config` | Local path for piper config files. |
 | `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
@@ -297,5 +300,6 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **10.08.25:** - Add streaming support.
 * **18.07.24:** - Rebase to Ubuntu Noble.
 * **25.11.23:** - Initial Release.

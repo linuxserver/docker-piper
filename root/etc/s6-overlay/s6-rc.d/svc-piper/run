@@ -13,4 +13,5 @@ exec \
         --voice "${PIPER_VOICE}" \
         --max-piper-procs "${PIPER_PROCS:-1}" \
         --data-dir /config \
-        --download-dir /config --update-voices
+        --download-dir /config --update-voices \
+        ${STREAMING:+--streaming}

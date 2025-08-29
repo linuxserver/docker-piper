@@ -26,10 +26,6 @@ RUN \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/ubuntu/ \
     piper-tts \
     "wyoming-piper==${PIPER_VERSION}" && \
-  if [ -z ${PIPER_BIN_VERSION+x} ]; then \
-    PIPER_BIN_VERSION=$(curl -sL "https://api.github.com/repos/OHF-Voice/piper1-gpl/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   rm -rf \

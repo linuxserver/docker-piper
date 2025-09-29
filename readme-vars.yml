@@ -35,7 +35,6 @@ opt_param_env_vars:
   - {env_var: "PIPER_NOISE", env_value: "0.667", desc: "Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio."}
   - {env_var: "PIPER_NOISEW", env_value: "0.333", desc: "Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses."}
   - {env_var: "PIPER_SPEAKER", env_value: "0", desc: "Speaker number to use if the voice supports multiple speakers."}
-  - {env_var: "PIPER_PROCS", env_value: "1", desc: "Number of Piper processes to run simultaneously."}
   - {env_var: "STREAMING", env_value: "", desc: "Setting to `true`, or any other value, will enable support for streaming audio on sentence boundaries."}
 readonly_supported: true
 # application setup block

@@ -118,7 +118,7 @@ libsmartcols1                2.39.3-9ubuntu6.3                  deb
 libsqlite3-0                 3.45.1-1ubuntu2.5                  deb                      
 libss2                       1.47.0-2.4~exp1ubuntu4.1           deb                      
 libssh-4                     0.10.6-2ubuntu0.1                  deb                      
-libssl3t64                   3.0.13-0ubuntu3.5                  deb                      
+libssl3t64                   3.0.13-0ubuntu3.6                  deb                      
 libstdc++6                   14.2.0-4ubuntu2~24.04              deb                      
 libsystemd0                  255.4-1ubuntu8.10                  deb                      
 libtasn1-6                   4.19.0-3ubuntu0.24.04.1            deb                      
@@ -148,7 +148,7 @@ nvidia-cufft-cu12            11.4.1.4                           python
 nvidia-curand-cu12           10.3.10.19                         python                   
 nvidia-nvjitlink-cu12        12.9.86                            python                   
 onnxruntime-gpu              1.23.0                             python                   
-openssl                      3.0.13-0ubuntu3.5                  deb                      
+openssl                      3.0.13-0ubuntu3.6                  deb                      
 packaging                    25.0                               python                   
 passwd                       1:4.13+dfsg1-4ubuntu3.2            deb                      
 patch                        2.7.6-7build3                      deb                      

@@ -19,9 +19,7 @@ pipeline {
     DOCKERHUB_TOKEN=credentials('docker-hub-ci-pat')
     QUAYIO_API_TOKEN=credentials('quayio-repo-api-token')
     GIT_SIGNING_KEY=credentials('484fbca6-9a4f-455e-b9e3-97ac98785f5f')
-    EXT_GIT_BRANCH = 'master'
-    EXT_USER = 'rhasspy'
-    EXT_REPO = 'wyoming-piper'
+    EXT_PIP = 'wyoming-piper'
     BUILD_VERSION_ARG = 'PIPER_VERSION'
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-piper'
@@ -143,25 +141,17 @@ pipeline {
     /* ########################
        External Release Tagging
        ######################## */
-    // If this is a github commit trigger determine the current commit at head
-    stage("Set ENV github_commit"){
-     steps{
-       script{
-         env.EXT_RELEASE = sh(
-           script: '''curl -H "Authorization: token ${GITHUB_TOKEN}" -s https://api.github.com/repos/${EXT_USER}/${EXT_REPO}/commits/${EXT_GIT_BRANCH} | jq -r '. | .sha' | cut -c1-8 ''',
-           returnStdout: true).trim()
-       }
-     }
-    }
-    // If this is a github commit trigger Set the external release link
-    stage("Set ENV commit_link"){
-     steps{
-       script{
-         env.RELEASE_LINK = 'https://github.com/' + env.EXT_USER + '/' + env.EXT_REPO + '/commit/' + env.EXT_RELEASE
-       }
-     }
-    }
-    // Sanitize the release tag and strip illegal docker or github characters
+    // If this is a pip release set the external tag to the pip version
+    stage("Set ENV pip_version"){
+      steps{
+        script{
+          env.EXT_RELEASE = sh(
+            script: '''curl -sL  https://pypi.python.org/pypi/${EXT_PIP}/json |jq -r '. | .info.version' ''',
+            returnStdout: true).trim()
+          env.RELEASE_LINK = 'https://pypi.python.org/pypi/' + env.EXT_PIP
+        }
+      }
+    }    // Sanitize the release tag and strip illegal docker or github characters
     stage("Sanitize tag"){
       steps{
         script{
@@ -1026,7 +1016,7 @@ pipeline {
                   "type": "commit",\
                   "tagger": {"name": "LinuxServer-CI","email": "ci@linuxserver.io","date": "'${GITHUB_DATE}'"}}'
               echo "Pushing New release for Tag"
-              curl -H "Authorization: token ${GITHUB_TOKEN}" -s https://api.github.com/repos/${EXT_USER}/${EXT_REPO}/commits/${EXT_RELEASE_CLEAN} | jq -r '.commit.message' > releasebody.json
+              echo "Updating PIP version of ${EXT_PIP} to ${EXT_RELEASE_CLEAN}" > releasebody.json
               jq -n \
                 --arg tag_name "$META_TAG" \
                 --arg target_commitish "gpu" \

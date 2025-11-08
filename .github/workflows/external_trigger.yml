@@ -29,8 +29,8 @@ jobs:
           echo "> [!NOTE]" >> $GITHUB_STEP_SUMMARY
           echo "> External trigger running off of gpu branch. To disable this trigger, add \`piper_gpu\` into the Github organizational variable \`SKIP_EXTERNAL_TRIGGER\`." >> $GITHUB_STEP_SUMMARY
           printf "\n## Retrieving external version\n\n" >> $GITHUB_STEP_SUMMARY
-          EXT_RELEASE=$(curl -u "${{ secrets.CR_USER }}:${{ secrets.CR_PAT }}" -sX GET "https://api.github.com/repos/rhasspy/wyoming-piper/commits/master" | jq -r '. | .sha' | cut -c1-8)
-          echo "Type is \`github_commit\`" >> $GITHUB_STEP_SUMMARY
+          EXT_RELEASE=$(curl -sL "https://pypi.python.org/pypi/wyoming-piper/json" |jq -r '. | .info.version')
+          echo "Type is \`pip_version\`" >> $GITHUB_STEP_SUMMARY
           if grep -q "^piper_gpu_${EXT_RELEASE}" <<< "${SKIP_EXTERNAL_TRIGGER}"; then
             echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
             echo "> Github organizational variable \`SKIP_EXTERNAL_TRIGGER\` matches current external release; skipping trigger." >> $GITHUB_STEP_SUMMARY

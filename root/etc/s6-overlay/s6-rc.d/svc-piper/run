@@ -19,4 +19,4 @@ exec \
         --data-dir /config \
         --download-dir /config \
         ${UPDATE_MODELS:+--update-voices} \
-        ${STREAMING:+--streaming}
+        ${NO_STREAMING:+--no-streaming}

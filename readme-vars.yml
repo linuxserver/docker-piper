@@ -2,7 +2,7 @@
 
 # project information
 project_name: piper
-project_url: "https://github.com/rhasspy/piper/"
+project_url: "https://github.com/rhasspy/wyoming-piper"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for Piper."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
@@ -35,14 +35,14 @@ opt_param_env_vars:
   - {env_var: "PIPER_NOISE", env_value: "0.667", desc: "Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio."}
   - {env_var: "PIPER_NOISEW", env_value: "0.333", desc: "Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses."}
   - {env_var: "PIPER_SPEAKER", env_value: "0", desc: "Speaker number to use if the voice supports multiple speakers."}
-  - {env_var: "STREAMING", env_value: "", desc: "Setting to `true`, or any other value, will enable support for streaming audio on sentence boundaries."}
+  - {env_var: "NO_STREAMING", env_value: "", desc: "Setting to `true`, or any other value, will disable support for streaming audio on sentence boundaries."}
 readonly_supported: true
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
   For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/), add the Wyoming integration and supply the hostname/IP and port that piper is running add-on."
 
-  For more information see the [piper docs](https://github.com/rhasspy/piper/),
+  For more information see the [wyoming piper docs](https://github.com/rhasspy/wyoming-piper),
 # init diagram
 init_diagram: |
   "piper:latest": {

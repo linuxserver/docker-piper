@@ -37,9 +37,9 @@ Find us at:
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-piper%2Fjob%2Fgpu%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-piper/job/gpu/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fpiper%2Fgpu%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/piper/gpu/index.html)
 
-[Piper](https://github.com/rhasspy/piper/) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for Piper.
+[Piper](https://github.com/rhasspy/wyoming-piper) is a fast, local neural text to speech system that sounds great and is optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for Piper.
 
-[![piper](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png)](https://github.com/rhasspy/piper/)
+[![piper](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png)](https://github.com/rhasspy/wyoming-piper)
 
 ## Supported Architectures
 
@@ -69,7 +69,7 @@ For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control
 
 When using the `gpu` tag with Nvidia GPUs, make sure you set the container to use the `nvidia` runtime and that you have the [Nvidia Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed on the host and that you run the container with the correct GPU(s) exposed. See the [Nvidia Container Toolkit docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html) for more details.
 
-For more information see the [piper docs](https://github.com/rhasspy/piper/),
+For more information see the [wyoming piper docs](https://github.com/rhasspy/wyoming-piper),
 
 ## Read-Only Operation
 
@@ -100,7 +100,7 @@ services:
       - PIPER_NOISE=0.667 #optional
       - PIPER_NOISEW=0.333 #optional
       - PIPER_SPEAKER=0 #optional
-      - STREAMING= #optional
+      - NO_STREAMING= #optional
     volumes:
       - /path/to/piper/data:/config
     ports:
@@ -122,7 +122,7 @@ docker run -d \
   -e PIPER_NOISE=0.667 `#optional` \
   -e PIPER_NOISEW=0.333 `#optional` \
   -e PIPER_SPEAKER=0 `#optional` \
-  -e STREAMING= `#optional` \
+  -e NO_STREAMING= `#optional` \
   -p 10200:10200 \
   -v /path/to/piper/data:/config \
   --restart unless-stopped \
@@ -145,7 +145,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PIPER_NOISE=0.667` | Controls the variability of the voice by adding noise. Values above 1 will start to degrade audio. |
 | `-e PIPER_NOISEW=0.333` | Controls the variability of speaking cadence. Values above 1 produce extreme stutters and pauses. |
 | `-e PIPER_SPEAKER=0` | Speaker number to use if the voice supports multiple speakers. |
-| `-e STREAMING=` | Setting to `true`, or any other value, will enable support for streaming audio on sentence boundaries. |
+| `-e NO_STREAMING=` | Setting to `true`, or any other value, will disable support for streaming audio on sentence boundaries. |
 | `-v /config` | Local path for piper config files. |
 | `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
@@ -311,7 +311,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
-* **29.08.25:** - Add streaming support & support for local only mode.
+* **15.11.25:** - Add streaming support & support for local only mode.
 * **26.11.24:** - Add GPU branch.
 * **18.07.24:** - Rebase to Ubuntu Noble.
 * **25.11.23:** - Initial Release.

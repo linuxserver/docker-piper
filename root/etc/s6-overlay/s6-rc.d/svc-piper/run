@@ -9,19 +9,25 @@ for dir in "${NVIDIA_PACKAGE_DIR}"/*; do
     fi
 done
 
-LD_LIBRARY_PATH="/lsiopy/lib/python3.12/site-packages/onnxruntime/capi:$LD_LIBRARY_PATH"
+unset UPDATE_MODELS
+
+if [[ -z ${LOCAL_ONLY} ]]; then
+    UPDATE_MODELS=true
+fi
+
+LD_LIBRARY_PATH="/lsiopy/lib/python3.12/site-packages/onnxruntime-gpu/capi:$LD_LIBRARY_PATH"
 
 exec \
     s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 10200" \
         s6-setuidgid abc python3 -m wyoming_piper \
-        --piper '/usr/share/piper/piper' \
         --uri 'tcp://0.0.0.0:10200' \
         --length-scale "${PIPER_LENGTH:-1.0}" \
         --noise-scale "${PIPER_NOISE:-0.667}" \
         --noise-w "${PIPER_NOISEW:-0.333}" \
         --speaker "${PIPER_SPEAKER:-0}" \
         --voice "${PIPER_VOICE}" \
-        --max-piper-procs "${PIPER_PROCS:-1}" \
         --data-dir /config \
-        --download-dir /config --update-voices \
-        --cuda
+        --download-dir /config \
+        --use-cuda \
+        ${UPDATE_MODELS:+--update-voices} \
+        ${NO_STREAMING:+--no-streaming}

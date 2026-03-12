@@ -66,6 +66,7 @@ init_diagram: |
     init-piper-config -> init-config-end
     init-config -> init-crontab-config
     init-mods-end -> init-custom-files
+    init-config-end -> init-deprecate
     init-adduser -> init-device-perms
     base -> init-envfile
     base -> init-migrations
@@ -77,6 +78,7 @@ init_diagram: |
     init-envfile -> init-os-end
     init-config -> init-piper-config
     init-custom-files -> init-services
+    init-deprecate -> init-services
     init-services -> svc-cron
     svc-cron -> legacy-services
     init-services -> svc-piper

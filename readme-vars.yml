@@ -86,6 +86,7 @@ init_diagram: |
   "piper:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "14.07.26:", desc: "Rebase to Ubuntu Resolute."}
   - {date: "29.08.25:", desc: "Add support for local only mode."}
   - {date: "10.08.25:", desc: "Add streaming support."}
   - {date: "18.07.24:", desc: "Rebase to Ubuntu Noble."}

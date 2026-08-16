@@ -300,6 +300,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **14.07.26:** - Rebase to Ubuntu Resolute.
 * **29.08.25:** - Add support for local only mode.
 * **10.08.25:** - Add streaming support.
 * **18.07.24:** - Rebase to Ubuntu Noble.

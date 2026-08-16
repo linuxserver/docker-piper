@@ -81,7 +81,7 @@ init_diagram: |
     svc-piper -> legacy-services
   }
   Base Images: {
-    "baseimage-ubuntu:noble"
+    "baseimage-ubuntu:resolute"
   }
   "piper:latest" <- Base Images
 # changelog

@@ -162,7 +162,7 @@ ncurses-bin                    6.6+20251231-1                         deb
 netbase                        6.5build1                              deb                         
 netcat-openbsd                 1.234-1                                deb                         
 numpy                          2.5.2                                  python                      
-onnxruntime                    1.28.0                                 python                      
+onnxruntime                    1.29.0                                 python                      
 openssl                        3.5.5-1ubuntu3.3                       deb                         
 openssl-provider-legacy        3.5.5-1ubuntu3.3                       deb                         
 packaging                      26.0                                   python                      
@@ -175,7 +175,7 @@ pip                            26.2.1                                 python
 piper-tts                      1.7.0                                  python                      
 platformdirs                   4.4.0                                  python                      
 procps                         2:4.0.4-9ubuntu1                       deb                         
-protobuf                       7.35.1                                 python                      
+protobuf                       7.36.0                                 python                      
 publicsuffix                   20260129.1928-1                        deb                         
 python3                        3.14.3-0ubuntu2                        deb                         
 python3-minimal                3.14.3-0ubuntu2                        deb                         

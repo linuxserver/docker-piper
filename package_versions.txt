@@ -139,7 +139,7 @@ libsmartcols1                  2.41.3-3ubuntu2.2                      deb
 libsqlite3-0                   3.46.1-9ubuntu0.3                      deb                         
 libss2                         1.47.2-3ubuntu4                        deb                         
 libssh2-1t64                   1.11.1-1ubuntu0.26.04.4                deb                         
-libssl3t64                     3.5.5-1ubuntu3.6                       deb                         
+libssl3t64                     3.5.5-1ubuntu3.7                       deb                         
 libstdc++6                     16-20260322-1ubuntu1                   deb                         
 libsystemd0                    259.5-0ubuntu3.4                       deb                         
 libtasn1-6                     4.21.0-2                               deb                         
@@ -161,10 +161,10 @@ ncurses-base                   6.6+20251231-1                         deb
 ncurses-bin                    6.6+20251231-1                         deb                         
 netbase                        6.5build1                              deb                         
 netcat-openbsd                 1.234-1                                deb                         
-numpy                          2.5.3                                  python                      
-onnxruntime                    1.30.0                                 python                      
-openssl                        3.5.5-1ubuntu3.6                       deb                         
-openssl-provider-legacy        3.5.5-1ubuntu3.6                       deb                         
+numpy                          2.5.4                                  python                      
+onnxruntime                    1.31.0                                 python                      
+openssl                        3.5.5-1ubuntu3.7                       deb                         
+openssl-provider-legacy        3.5.5-1ubuntu3.7                       deb                         
 packaging                      26.0                                   python                      
 packaging                      26.3                                   python                      
 passwd                         1:4.17.4-2ubuntu3                      deb                         

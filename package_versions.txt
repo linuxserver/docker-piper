@@ -199,6 +199,6 @@ ubuntu-keyring                 2023.11.28.1build1                     deb
 util-linux                     2.41.3-3ubuntu2.2                      deb                         
 wheel                          0.46.3                                 python                      
 wyoming                        1.11.0                                 python                      
-wyoming-piper                  2.5.3                                  python                      
+wyoming-piper                  2.5.4                                  python                      
 zipp                           3.23.0                                 python                      
 zlib1g                         1:1.3.dfsg+really1.3.1-1ubuntu3.2      deb                         
